@@ -1,0 +1,28 @@
+<%- include('../compartido/cabecera')%>
+<% if(datos.mensaje){ %>
+    <div class="alert alert-primary" role="alert">
+        <%= datos.mensaje %>
+    </div>
+<% } %>
+<% if(datos.error){ %>
+    <div class="alert alert-danger" role="alert">
+        <%= datos.error %>
+    </div>
+<% } %>
+
+<h1>Lista de Usuarios</h1>
+<br>
+
+<%- include('componentes/mostrar-tabla',
+{
+usuarios: datos.usuarios
+})%>
+
+<div class="col-md-12 text-center mb-3">
+    <a href="/usuarios-villamascota/logout">
+        <button type="button"
+                class="btn btn-secondary">Salir</button>
+    </a>
+</div>
+
+<%- include('../compartido/pie-de-pagina')%>

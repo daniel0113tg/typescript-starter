@@ -1,0 +1,40 @@
+<table class="table"> <!-- table -->
+    <thead> <!-- thead -->
+    <tr> <!-- table row -->
+        <th scope="col"> <!-- table header -->
+            ID
+        </th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Cédula</th>
+        <th scope="col">Correo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% usuarios.forEach( (usuario) => {%>
+        <tr> <!-- table row -->
+            <th scope="row">
+                <%= usuario.idUsuario%>
+            </th> <!-- table header -->
+            <td>
+                <%= usuario.nombreUsuario%>
+            </td> <!-- table detail -->
+            <td>
+                <%= usuario.apellidoUsuario%>
+            </td> <!-- table detail -->
+            <td>
+                <%= usuario.cedulaUsuario%>
+            </td> <!-- table detail -->
+            <td>
+                <%= usuario.correo%>
+            </td> <!-- table detail -->
+            <td>
+                <a href="/usuarios-villamascota/borrar-cuenta/<%= usuario.idUsuario %>">
+                    <button type="button"
+                            class="btn btn-danger">Eliminar</button>
+                </a>
+            </td> <!-- table detail -->
+        </tr>
+    <%}); %>
+    </tbody> <!-- tbody -->
+</table>

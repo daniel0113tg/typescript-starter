@@ -1,0 +1,65 @@
+<%- include('../compartido/cabecera')%>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<body>
+<div class="container">
+    <% if(datos.error){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.error %>
+        </div>
+    <% } %>
+
+    <% if(datos.mensaje){ %>
+        <div class="alert alert-primary" role="alert">
+            <%= datos.mensaje %>
+        </div>
+    <% } %>
+        <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="first">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Login</h1>
+                        </div>
+                    </div>
+                    <form action="/usuarios-villamascota/login" method="post" name="login">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" name="username"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ejm: violeta.brusil@epn.edu.ec"  required="true">
+                            <small id="emailIDHelp"
+                                   class="form-text text-muted">
+                                Ingrese un formato de email correcto.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Password</label>
+                            <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Ejm: ********"  required="true">
+                            <small id="passwordIDHelp"
+                                   class="form-text text-muted">
+                                Ingrese una contraseña con más de 8 caracteres.
+                            </small>
+                        </div>
+                        <div class="col-md-12 text-center ">
+                            <button type="submit" class="btn btn-warning">Login</button>
+                        </div>
+                        <div class="col-md-12 ">
+                                <p class="text-center">No tiene una cuenta? <a href="/usuarios-villamascota/registro">Registrate</a></p>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<%- include('../compartido/pie-de-pagina')%>

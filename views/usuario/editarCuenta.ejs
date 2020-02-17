@@ -1,0 +1,89 @@
+<%- include('../compartido/cabecera')%>
+<% const estaEditando = datos.usuario != undefined;%>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<body>
+<div class="container">
+    <% if(datos.error){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.error %>
+        </div>
+    <% } %>
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="second">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1 >Editar Cuenta</h1>
+                        </div>
+                    </div>
+                    <form action="/usuarios-villamascota/editar-cuenta<%= estaEditando ? '/' + datos.usuario.idUsuario : '' %>"  method="POST">
+                        <div class="form-group">
+                            <label for="nombreUsuario">Nombre</label>
+                            <input type="text"  name="nombreUsuario" value="<%= estaEditando ? datos.usuario.nombreUsuario : '' %>"  class="form-control" id="nombreUsuario" aria-describedby="emailHelp" placeholder="Ej: Violeta" required="true">
+                            <small id="nombreIDHelp"
+                                   class="form-text text-muted">
+                                Ingresa un nombre mayor a 3 caracteres y menor a 10.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidoUsuario">Apellido</label>
+                            <input type="text"  name="apellidoUsuario" class="form-control" value="<%= estaEditando ? datos.usuario.apellidoUsuario : '' %>"  id="apellidoUsuario" aria-describedby="emailHelp" placeholder="Ej: Brusil" required="true">
+                            <small id="apellidoIDHelp"
+                                   class="form-text text-muted">
+                                Ingresa un Apellido mayor a 3 caracteres y menor a 10.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="cedulaUsuario">Cédula</label>
+                            <input type="text"  name="cedulaUsuario" class="form-control" id="cedulaUsuario" value="<%= estaEditando ? datos.usuario.cedulaUsuario : '' %>" aria-describedby="emailHelp" placeholder="Ej: 1724869738" required="true">
+                            <small id="cedulaIDHelp"
+                                   class="form-text text-muted">
+                                Ingrese el formato correcto de la cédula.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input type="text"  name="direccion"class="form-control" id="direccion" aria-describedby="emailHelp" value="<%= estaEditando ? datos.usuario.direccion : '' %>" placeholder="Ej: El pantano" required="true">
+                            <small id="direccionIDHelp"
+                                   class="form-text text-muted">
+                                Ingrese una dirección domiciliaria valida.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" name="correo"  class="form-control" id="correo" aria-describedby="emailHelp" placeholder="Ejm: violeta.brusil@epn.edu.ec" value="<%= estaEditando ? datos.usuario.correo : '' %> "      required="true">
+                            <small id="emailIDHelp"
+                                   class="form-text text-muted">
+                                Ingrese un formato de email correcto.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" value="<%= estaEditando ? datos.usuario.password : '' %>"  placeholder="Ejm: ********">
+                        </div>
+                        <div class="col-md-12 text-center mb-3">
+                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center mb-3">
+        <a href="/usuarios-villamascota/logout">
+            <button type="button"
+                    class="btn btn-secondary">Salir</button>
+        </a>
+    </div>
+</div>
+</body>
+<%- include('../compartido/pie-de-pagina')%>
