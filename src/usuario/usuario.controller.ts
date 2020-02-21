@@ -87,6 +87,20 @@ export class UsuarioController{
       },
     );
   }
+  @Get('verPedidos')
+  verPedido(
+    @Query('error') error: string,
+    @Res() res,
+  ) {
+    res.render(
+      'usuario/register',
+      {
+        datos: {
+          error,
+        },
+      },
+    );
+  }
   @Post('login')
   async login(
     @Body('username') username: string,

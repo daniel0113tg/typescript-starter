@@ -10,8 +10,21 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <li class="nav-item active">
+                <a class="nav-link" href="/usuarios-villamascota/login">Mi Cuenta <span class="sr-only">(current)</span></a>
+            </li>
+            <img src="https://img.icons8.com/material/4ac144/256/shopping-cart.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <li class="nav-item active">
+                <a class="nav-link" href="/pedido?idUsuario=<%= estaEditando ? datos.usuario.idUsuario : '' %>">Pedidos <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-
     <% if(datos.mensaje){ %>
         <div class="alert alert-primary" role="alert">
             <%= datos.mensaje %>
@@ -78,12 +91,12 @@
                             <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" value="<%= estaEditando ? datos.usuario.password : '' %>" <%= estaEditando ? 'disabled' : '' %>  placeholder="Ejm: ********">
                         </div>
                         <div class="col-md-12 text-center mb-3">
-                            <a href="/usuarios-villamascota/editar-cuenta/<%= datos.usuario.idUsuario %>">
+                            <a href="/usuarios-villamascota/editar-cuenta/<%= estaEditando ? datos.usuario.idUsuario : '' %>">
                                 <button type="button" class="btn btn-warning">Editar</button>
                             </a>
                         </div>
                         <div class="col-md-12 text-center mb-3">
-                            <a href="/usuarios-villamascota/borrar-cuenta/<%= datos.usuario.idUsuario %>">
+                            <a href="/usuarios-villamascota/borrar-cuenta/<%= estaEditando ? datos.usuario.idUsuario : '' %>">
                                 <button type="button"
                                         class="btn btn-secondary">Borrar Cuenta</button>
                             </a>

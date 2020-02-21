@@ -1,0 +1,28 @@
+<%- include('../compartido/cabecera')%>
+
+<div class="container" >
+
+    <div class="row">
+        <div class="col-lg-3">
+
+            <h2 class="my-4">Categoria</h2>
+            <div class="list-group">
+                <a href="/catalogo/categoria/<%= datos.mascota%>/Higiene" class="list-group-item">Higiene</a>
+                <a href="/catalogo/categoria/<%= datos.mascota%>/Accesorios" class="list-group-item">Accesorios</a>
+                <a href="/catalogo/categoria/<%= datos.mascota%>/Comida" class="list-group-item">Comida</a>
+                <a href="/catalogo/categoria/<%= datos.mascota%>/Snacks" class="list-group-item">Snacks</a>
+            </div>
+        </div>
+        <!-- /.col-lg-3 -->
+        <%- include('componentes/mostrar-productos',
+        {
+        productos_general: datos.productos
+        })%>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<%- include('../compartido/pie-de-pagina')%>
+

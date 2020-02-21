@@ -1,0 +1,48 @@
+<br>
+<br>
+<h2 class="my-8"> Detalle de venta</h2>
+<br>
+<table class="table"> <!-- table -->
+    <thead> <!-- thead -->
+    <tr> <!-- table row -->
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Subtotal</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% let total = 0 %>
+    <% detalles.forEach( (detalle) => {%>
+        <tr> <!-- table row -->
+            <td>
+                <img src="<%= detalle.producto.imgProducto%>"  width="50" height="50" alt="">
+                <%= detalle.producto.nombreProducto%>
+            </td> <!-- table detail -->
+            <td>
+                <%= detalle.producto.precioProducto%>
+            </td> <!-- table detail -->
+            <td>
+                <%= detalle.cantidad%>
+            </td> <!-- table detail -->
+            <td>
+                <%= detalle.subtotal%>
+                <% total = total + detalle.subtotal%>
+            </td> <!-- table detail -->
+        </tr>
+    <%}); %>
+    <div class="col-lg-4" style="justify-content: center;align-items: center;">
+        <div class="card w-175 ">
+            <div class="card-body">
+                <h1 class="card-title">Total pagado</h1>
+                <h2 class="my-8">$ <%= total%></h2>
+                <a href="/pedido">
+                    <button type="button" class="btn btn-success">Volver</button>
+                </a>
+                <br>
+            </div>
+        </div>
+    </div>
+    <br>
+    </tbody> <!-- tbody -->
+</table>

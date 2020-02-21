@@ -1,0 +1,27 @@
+<%- include('../compartido/cabecera')%>
+<% const usuario = datos.usuario != undefined;%>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <li class="nav-item active">
+                <a class="nav-link" href="/usuarios-villamascota/login">Mi Cuenta <span class="sr-only">(current)</span></a>
+            </li>
+            <img src="https://img.icons8.com/material/4ac144/256/shopping-cart.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <li class="nav-item active">
+                <a class="nav-link" href="/pedido?idUsuario=<%= datos.usuario.idUsuario %>">Pedidos <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<h2 class="my-8"> Mis Pedidos</h2>
+<br>
+<%- include('componentes/mostrar-pedidos',
+{
+pedidos: datos.pedidos
+})%>
+
+</body>
+<%- include('../compartido/pie-de-pagina')%>

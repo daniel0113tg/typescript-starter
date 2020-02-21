@@ -1,0 +1,31 @@
+<table class="table"> <!-- table -->
+    <thead> <!-- thead -->
+    <tr> <!-- table row -->
+        <th scope="col">Fecha</th>
+        <th scope="col">Total a pagar</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% pedidos.forEach( (pedidos) => {%>
+        <tr> <!-- table row -->
+            <td>
+                <%= pedidos.fechaPedido%>
+            </td> <!-- table detail -->
+            <td>
+                <%= pedidos.total%>
+            </td> <!-- table detail -->
+            <td>
+                <%= pedidos.estado%>
+            </td> <!-- table detail -->
+            <td>
+                <a href="/detalle/<%= pedidos.idPedido%>">
+                    <button type="button"
+                            class="btn btn-danger">Ver Detalle</button>
+                </a>
+            </td>
+        </tr>
+    <%}); %>
+    </tbody> <!-- tbody -->
+</table>

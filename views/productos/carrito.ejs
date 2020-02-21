@@ -1,0 +1,171 @@
+<%- include('../compartido/cabecera')%>
+<style>
+    .number-input input[type="number"] {
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+
+    .number-input input[type=number]::-webkit-inner-spin-button,
+    .number-input input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+
+    .number-input {
+        margin-bottom: 3rem;
+    }
+
+    .number-input button {
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 0;
+        position: relative;
+    }
+
+    .number-input button:before,
+    .number-input button:after {
+        display: inline-block;
+        position: absolute;
+        content: '';
+        height: 2px;
+        transform: translate(-50%, -50%);
+    }
+
+    .number-input button.plus:after {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .number-input input[type=number] {
+        text-align: center;
+    }
+
+    .number-input.number-input {
+        border: 1px solid #ced4da;
+        width: 10rem;
+        border-radius: .25rem;
+    }
+
+    .number-input.number-input button {
+        width: 2.6rem;
+        height: .7rem;
+    }
+
+    .number-input.number-input button.minus {
+        padding-left: 10px;
+    }
+
+    .number-input.number-input button:before,
+    .number-input.number-input button:after {
+        width: .7rem;
+        background-color: #495057;
+    }
+
+    .number-input.number-input input[type=number] {
+        max-width: 4rem;
+        padding: .5rem;
+        border: 1px solid #ced4da;
+        border-width: 0 1px;
+        font-size: 1rem;
+        height: 2rem;
+        color: #495057;
+    }
+
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+
+            .number-input.def-number-input.safari_only button:before,
+            .number-input.def-number-input.safari_only button:after {
+                margin-top: -.3rem;
+            }
+        }
+    }
+</style>
+<script src="./src/bootstrap-input-spinner.js"></script>
+<script>
+  $("input[type='number']").inputSpinner()
+</script>
+
+<% if(datos.error){ %>
+    <div class="alert alert-danger" role="alert">
+        <%= datos.error %>
+    </div>
+<% } %>
+
+<div class="container" >
+    <br>
+    <br>
+    <% let total = 0 %>
+    <% datos.carrito_total.forEach( (producto) =>{%>
+        <% total = total + +producto.precioProducto.toString() %>
+    <%})%>
+    <% if(total > 0){%>
+    <h2 class="my-8">Mi carrito</h2>
+    <br>
+    <% }%>
+    <% if(total == 0){%>
+        <h2 class="my-8">Carrito Vacio</h2>
+        <br>
+    <% }%>
+    <% let subtotal = 0 %>
+    <div class="row">
+        <div class="col-lg-8" style="justify-content: center;align-items: center;">
+            <% datos.carrito_total.forEach( (producto) =>{%>
+                <% let cantidad = 1 %>
+                <div class="row">
+                    <div class="col-lg-8" style="justify-content: center;align-items: center;">
+                        <div class="card border-light mb-3" style="max-width: 18rem;">
+                            <a href=""><img class="card-img-top" src="<%= producto.imgProducto%>"  width="700" height="400" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <%= producto.nombreProducto%>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4" style="justify-content: center;align-items: center;" >
+                        <div class="card border-light mb-3" style="max-width: 18rem;">
+                            <div class="def-number-input number-input safari_only">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                <input class="quantity" min="0" name="quantity"  id="quantity" value="<%= cantidad %>" type="number">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                            </div>
+                            <br>
+
+                            <h2 class="my-8">$ <%= producto.precioProducto*cantidad%></h2>
+                            <br>
+                            <a href="/catalogo/quitar/<%= producto.idProducto%>">
+                                <button type="button" class="btn btn-danger" style="width: 155px">Eliminar</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <%  subtotal = subtotal + producto.precioProducto*cantidad %>
+            <%})%>
+                <%  total = subtotal %>
+        </div>
+        <% if(total > 0){%>
+        <div class="col-lg-4" style="justify-content: center;align-items: center;">
+            <div class="card w-175 ">
+                <div class="card-body">
+                    <h1 class="card-title">Total a Pagar</h1>
+                    <h2 class="my-8">$ <%= total %></h2>
+                    <br>
+                    <br>
+                    <a href="/pedido/comprar?total=<%= total%>">
+                        <button type="button" class="btn btn-success">Finalizar Compra</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <% }%>
+
+        <!-- /.col-lg-3 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+<%- include('../compartido/pie-de-pagina')%>
